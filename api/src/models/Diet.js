@@ -4,7 +4,7 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
 
-  sequelize.define('recipe', {
+  sequelize.define('diet', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -14,21 +14,8 @@ module.exports = (sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    resumen:{
-      type:DataTypes.TEXT,
-      allowNull: false,
-    },
-    score:{
-      type:DataTypes.NUMBER,
-    },
-    pasoApaso:{
-      type:DataTypes.TEXT,
-    },
 });
 };
 
-//     ID: *
-// Nombre *
-// Resumen del plato *
-// Nivel de "comida saludable" (health score)
-// Paso a paso
+// ID
+// Nombre
