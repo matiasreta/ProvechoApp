@@ -19,9 +19,9 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     score:{
-      type:DataTypes.NUMBER,
+      type:DataTypes.INTEGER,
     },
-    pasoApaso:{
+    howToUse:{
       type:DataTypes.TEXT,
     },
 });
