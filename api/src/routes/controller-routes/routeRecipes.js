@@ -4,7 +4,7 @@ const router = Router();
 const axios = require("axios");
 //-----------------------------------------------//
 const {Recipe} = require('../../db');
-//const { Op } = require('sequelize');
+const { Op } = require('sequelize');
 //-----------------------------------------------//
 
 const getAPIrecipes= async (name)=>{
@@ -13,8 +13,10 @@ const getAPIrecipes= async (name)=>{
     return list;
 }
 const getBDrecipes= async(name)=>{
-    const list = await Recipe.findOne({
-        where:{name:name}
+    const list = await Recipe.findAll({
+        where:{
+                name:{[Op.substring]:name}
+            }
     })
     return list;
 }

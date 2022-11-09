@@ -1,3 +1,4 @@
+
 /////////////////////////////////////////
 //                       _oo0oo_
 //                      o8888888o
@@ -19,11 +20,29 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const { conn,Diet } = require('./src/db.js');
+
+const dietList = [
+  {name:'dairy free'}, 
+  {name:'gluten free'}, 
+  {name:'ketogenic'},
+  {name:'lacto ovo vegetarian'},
+  {name:'fodmap friendly'},
+  {name:'paleolithic'},
+  {name:'pescatarian'},
+  {name:'primal'},
+  {name:'vegan'},
+  {name:'whole 30'}];
+
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true}).then(() => {
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
+})
+.then(() => {
+  Diet.bulkCreate(dietList);
 });
+
+
