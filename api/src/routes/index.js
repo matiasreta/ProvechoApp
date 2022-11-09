@@ -4,8 +4,8 @@ const router = Router();
 
 const routeRecipes = require('./controller-routes/routeRecipes');
 const routeDiets = require('./controller-routes/routeDiets')
-/// import las rutas
 
+/// importo las rutas
 
 router.use('/',routeRecipes);
 router.use('/',routeDiets)

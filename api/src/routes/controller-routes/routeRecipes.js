@@ -4,14 +4,8 @@ const router = Router();
 const axios = require("axios");
 //-----------------------------------------------//
 const {Recipe} = require('../../db');
-const { Op } = require('sequelize');
+//const { Op } = require('sequelize');
 //-----------------------------------------------//
-router.get('/platoFavorito',(req,res)=>{
-    const name = req.query.name;
-    // im waiting for "pasta"
-    res.send("me gusta la " + name +" con mucho queso")
-    
-})
 
 const getAPIrecipes= async (name)=>{
     const url= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${name}&number=10&apiKey=b0abb062cc4a434c82c3d4971fff0d77`)
@@ -26,12 +20,29 @@ const getBDrecipes= async(name)=>{
 }
 
 router.get('/recipes',async(req,res)=>{
-    const name = req.query.name;
+    const {name} = req.query;
     res.send(await getAPIrecipes(name))
 })
 
+//lo tengo que unir todavia...
 // where:{
 //     name:{[Op.substring]:name}
 // }
+
+//---------------------------------------------------------------------------------//
+
+const setBDrecipe=()=>{
+
+}
+
+
+router.post('/recipes',(req,res)=>{
+    const {name,resumen}=req.body;
+    res.send(resumen)
+
+})
+
+
+
 
 module.exports= router;
