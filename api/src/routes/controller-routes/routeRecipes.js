@@ -15,28 +15,27 @@ const getAPIrecipes= async (name)=>{
 const getBDrecipes= async(name)=>{
     const list = await Recipe.findAll({
         where:{
-                name:{[Op.substring]:name}
-            }
+            name:{[Op.substring]:name}
+        }
     })
     return list;
 }
+const getAllRecipes=async(name)=>{
+    const list = await getAPIrecipes(name)
+    const listTwo= await getBDrecipes(name)
+    return list.concat(listTwo);
 
+}
 router.get('/',async(req,res)=>{ 
     const {name} = req.query;
-    res.send(await getBDrecipes(name))
+    res.send(await getAllRecipes(name))
 })
-
-//lo tengo que unir todavia...
-// where:{
-//     name:{[Op.substring]:name}
-// }
 
 //---------------------------------------------------------------------------------//
 
 const setBDrecipe= async(name,resumen)=>{
     const newRecipe= await Recipe.create({name:name,resumen:resumen})
     return "secreo";
-    
 }
 
 router.post('/',async (req,res)=>{
@@ -46,9 +45,9 @@ router.post('/',async (req,res)=>{
 })
 
 //---------------------------------------------------------------------------------//
-router.get('/:name',(req,res)=>{
-    const name= req.params.name;
-    res.send(name)
+router.get('/:id',(req,res)=>{
+    const id= req.params.id;
+    res.send(id)
 })
 
 
