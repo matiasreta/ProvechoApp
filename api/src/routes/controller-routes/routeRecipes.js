@@ -1,14 +1,18 @@
 const { Router } = require('express');
 const router = Router();
-//-----------------------------------------------//
-const axios = require("axios");
-//-----------------------------------------------//
+//-------------------------------------//
 const {Recipe} = require('../../db');
 const { Op } = require('sequelize');
-//-----------------------------------------------//
+//-------------------------------------//
+require('dotenv').config();
+const {APIKEY} = process.env;
+//-------------------------------------//
+const axios = require("axios");
+//-------------------------------------//
+
 
 const getAPIrecipes= async (name)=>{
-    const url= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${name}&number=10&apiKey=b0abb062cc4a434c82c3d4971fff0d77`)
+    const url= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${name}&number=10&apiKey=${APIKEY}`)
     let list=url.data.results.map(e=>{ return {id:e.id,name:e.title,image:e.image}});
     return list;
 }
@@ -21,26 +25,42 @@ const getBDrecipes= async(name)=>{
     return list;
 }
 const getAllRecipes=async(name)=>{
-    const list = await getAPIrecipes(name)
-    const listTwo= await getBDrecipes(name)
-    return list.concat(listTwo);
-
+    const apiList = await getAPIrecipes(name)
+    const bdList= await getBDrecipes(name)
+    const recipes=apiList.concat(bdList);
+    if(!recipes){
+        throw new Error("recipes does not exist");
+    }
+    return recipes;
+    
 }
 router.get('/',async(req,res)=>{ 
-    const {name} = req.query;
-    res.send(await getAllRecipes(name))
+    try{
+        const {name} = req.query;
+        res.status(200).send(await getAllRecipes(name))
+    }catch(e){
+        res.status(404).json({ error: e.message })
+    }
+    
 })
 
 //---------------------------------------------------------------------------------//
 
 const setBDrecipe= async(name,resumen)=>{
     const newRecipe= await Recipe.create({name:name,resumen:resumen})
-    return "secreo";
+    if(!newRecipe)throw new Error("no se pudo crear la receta")
+    return "se creo con exito";
 }
 
 router.post('/',async (req,res)=>{
-    const {name,resumen}=req.body;
-    res.send(await setBDrecipe(name,resumen))
+    try{
+        const {name,resumen}=req.body;
+        res.status(201).send(await setBDrecipe(name,resumen))
+    }catch(e){
+        res.status(400).json({ error: e.message })
+        
+    }
+    
 
 })
 

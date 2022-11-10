@@ -8,10 +8,7 @@ const routeDiets = require('./controller-routes/routeDiets')
 /// importo las rutas
 
 router.use('/recipes',routeRecipes);
-router.use('/',routeDiets)
-
-
-
+router.use('/diets',routeDiets)
 
 
 module.exports = router;
