@@ -68,25 +68,35 @@ router.post('/',async (req,res)=>{
 //-----------------------------------------------------------------------------------------------------------------------------------------//
 
 //const url= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&number=50&apiKey=${APIKEY}`)
-const getInfoID=async(id)=>{
+const getInfoAPI=async(id)=>{
     const url= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&number=50&apiKey=${APIKEY}`)
     const {title,image,dishTypes,diets,healthScore,summary,instructions}= url.data;
-    return{title,image,dishTypes,diets,healthScore,summary,instructions};
+    return{name:title,image,dishTypes,diets,score:healthScore,resumen:summary,howToUse:instructions};
 }
 const getInfoBD=async(id)=>{
-    const found = await Recipe.findbyPk(id);
+    const found = await Recipe.findByPk(id);
     return found;
 }
-const getInfo=()=>{
+const getRecipeInfo=(id)=>{
+    const existAPI=getInfoAPI(id);
+    const existBD=getInfoBD(id);
+    if(!existBD){
+        if(!existAPI){
+            throw new Error("no existe el id")
+        }
+        return existAPI;
+    }
+    return existBD;
     
+
 }
 
 router.get('/:id',async(req,res)=>{
     try{
         const id= req.params.id;
-        res.send(await getInfoID(id))
+        res.send(await getRecipeInfo(id))
     }catch(e){
-        res.status(404).json({ error: e.message })  
+        res.status(404).json({ error: e.message })
     }
 })
 
