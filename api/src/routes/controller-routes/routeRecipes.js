@@ -14,11 +14,9 @@ const axios = require("axios");
 const getAPIrecipes= async (name)=>{
     const url= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=100&apiKey=${APIKEY}`)
     let list=url.data.results.map(e=>{ return {id:e.id,name:e.title,image:e.image,diets:e.diets}});
-    let found=list.filter(e=>e.name.toLowerCase().includes(name.toLowerCase()));
-
-    return found;
+    //let found=list.filter(e=>e.name.toLowerCase().includes(name.toLowerCase()));
+    return list;
 }
-//-----------------------------------------------------------------------------------------------------------------------------------------//
 const getBDrecipes= async(name)=>{
     const list = await Recipe.findAll({
         where:{
@@ -69,16 +67,27 @@ router.post('/',async (req,res)=>{
 
 //-----------------------------------------------------------------------------------------------------------------------------------------//
 
+//const url= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&number=50&apiKey=${APIKEY}`)
+const getInfoID=async(id)=>{
+    const url= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&number=50&apiKey=${APIKEY}`)
+    const {title,image,dishTypes,diets,healthScore,summary,instructions}= url.data;
+    return{title,image,dishTypes,diets,healthScore,summary,instructions};
+}
+const getInfoBD=async(id)=>{
+    const found = await Recipe.findbyPk(id);
+    return found;
+}
+const getInfo=()=>{
+    
+}
 
-
-router.get('/:id',(req,res)=>{
+router.get('/:id',async(req,res)=>{
     try{
         const id= req.params.id;
-        res.send(id)
+        res.send(await getInfoID(id))
     }catch(e){
         res.status(404).json({ error: e.message })  
     }
-    
 })
 
 
