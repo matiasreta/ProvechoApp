@@ -31,6 +31,7 @@ const getAllRecipes=async(name)=>{
     const bdList= await getBDrecipes(name)
     const recipes=apiList.concat(bdList);
     if(!recipes){
+        // recipes.data
         throw new Error("recipes does not exist");
     }
     return recipes;
@@ -69,34 +70,41 @@ router.post('/',async (req,res)=>{
 
 //const url= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&number=50&apiKey=${APIKEY}`)
 const getInfoAPI=async(id)=>{
-    const url= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&number=50&apiKey=${APIKEY}`)
-    const {title,image,dishTypes,diets,healthScore,summary,instructions}= url.data;
-    return{name:title,image,dishTypes,diets,score:healthScore,resumen:summary,howToUse:instructions};
+    try{
+        const url= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&number=50&apiKey=${APIKEY}`)
+        const {title,image,dishTypes,diets,healthScore,summary,instructions}= url.data;
+        return{name:title,image,dishTypes,diets,score:healthScore,resumen:summary,howToUse:instructions};
+    }catch(e){
+        (e.message)
+        return null;
+    }
+    
 }
 const getInfoBD=async(id)=>{
-    const found = await Recipe.findByPk(id);
-    return found;
-}
-const getRecipeInfo=(id)=>{
-    const existAPI=getInfoAPI(id);
-    const existBD=getInfoBD(id);
-    if(!existBD){
-        if(!existAPI){
-            throw new Error("no existe el id")
-        }
-        return existAPI;
+    try{
+        const found = await Recipe.findByPk(id);
+        return found;
+    }catch(e){
+        (e.message)
+        return null;
     }
-    return existBD;
     
-
 }
-
+const getRecipeInfo=async(id)=>{
+        const existAPI=await getInfoAPI(id);
+        if(existAPI)return existAPI
+        const existBD=await getInfoBD(id);
+        if(existBD)return existBD
+        
+        throw new Error("Fallo")
+        
+}
 router.get('/:id',async(req,res)=>{
     try{
         const id= req.params.id;
         res.send(await getRecipeInfo(id))
     }catch(e){
-        res.status(404).json({ error: e.message })
+        res.status(404).json({ error: e.message})
     }
 })
 
