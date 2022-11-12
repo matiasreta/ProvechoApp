@@ -13,7 +13,6 @@ export const Create = () => {
         <img src="" alt="Dish-Information" />
         <p>Name</p>
         <p>DishTypes</p>
-        <p>DietTypes</p>
         <p>Score</p>
         <p>Information</p>
 
