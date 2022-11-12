@@ -77,7 +77,6 @@ const getInfoAPI=async(id)=>{
         const {title,image,dishTypes,diets,healthScore,summary,instructions}= url.data;
         return{name:title,image,dishTypes,diets,score:healthScore,summary,instructions};
     }catch(e){
-        (e.message)
         return null;
     }
     
@@ -87,7 +86,6 @@ const getInfoBD=async(id)=>{
         const found = await Recipe.findByPk(id);
         return found;
     }catch(e){
-        (e.message)
         return null;
     }
     
@@ -98,8 +96,7 @@ const getRecipeInfo=async(id)=>{
         const existBD=await getInfoBD(id);
         if(existBD)return existBD
         
-        throw new Error("Fallo")
-        
+        throw new Error("Fallo")  
 }
 router.get('/:id',async(req,res)=>{
     try{
