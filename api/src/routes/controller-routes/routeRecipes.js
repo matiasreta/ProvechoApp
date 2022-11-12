@@ -14,28 +14,30 @@ const axios = require("axios");
 const getAPIrecipes= async (name)=>{
     const url= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=100&apiKey=${APIKEY}`)
     let list=url.data.results.map(e=>{ return {id:e.id,name:e.title,image:e.image,diets:e.diets}});
-    //let found=list.filter(e=>e.name.toLowerCase().includes(name.toLowerCase()));
-    return list;
+    let found=list.filter(e=>e.name.toLowerCase().includes(name.toLowerCase()));
+    return found;
 }
+
+//falta que no sea key sensitive
 const getBDrecipes= async(name)=>{
     const list = await Recipe.findAll({
         where:{
             name:{[Op.substring]:name},
         },
+        //nombre,dieta,imagen
         attributes:['name',],
     })
     return list;
 }
 const getAllRecipes=async(name)=>{
-    const apiList = await getAPIrecipes(name)
-    const bdList= await getBDrecipes(name)
+// contralar errores, no entra el recipes
+    const apiList = await getAPIrecipes(name);
+    const bdList= await getBDrecipes(name);
     const recipes=apiList.concat(bdList);
-    if(!recipes){
-        // recipes.data
+    if(!recipes[0]){
         throw new Error("recipes does not exist");
     }
     return recipes;
-    
 }
 router.get('/',async(req,res)=>{ 
     try{
@@ -48,16 +50,17 @@ router.get('/',async(req,res)=>{
 
 //-----------------------------------------------------------------------------------------------------------------------------------------//
 
-const setBDrecipe= async(name,resumen)=>{
-    const newRecipe= await Recipe.create({name:name,resumen:resumen})
+const setBDrecipe= async(name,summary,instructions,score)=>{
+    const newRecipe= await Recipe.create({name,summary,instructions,score})
     if(!newRecipe)throw new Error("no se pudo crear la receta")
     return "se creo con exito";
 }
 
 router.post('/',async (req,res)=>{
     try{
-        const {name,resumen}=req.body;
-        res.status(201).send(await setBDrecipe(name,resumen))
+        const {name,summary,instructions,score}=req.body;
+        //faltaria asociar las dietas del plato
+        res.status(201).send(await setBDrecipe(name,summary,instructions,score))
     }catch(e){
         res.status(400).json({ error: e.message })
         
@@ -68,12 +71,11 @@ router.post('/',async (req,res)=>{
 
 //-----------------------------------------------------------------------------------------------------------------------------------------//
 
-//const url= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&number=50&apiKey=${APIKEY}`)
 const getInfoAPI=async(id)=>{
     try{
-        const url= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&number=50&apiKey=${APIKEY}`)
+        const url= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&number=100&apiKey=${APIKEY}`)
         const {title,image,dishTypes,diets,healthScore,summary,instructions}= url.data;
-        return{name:title,image,dishTypes,diets,score:healthScore,resumen:summary,howToUse:instructions};
+        return{name:title,image,dishTypes,diets,score:healthScore,summary,instructions};
     }catch(e){
         (e.message)
         return null;

@@ -15,14 +15,14 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
-    resumen:{
+    summary:{
       type:DataTypes.TEXT,
       allowNull: false,
     },
     score:{
       type:DataTypes.INTEGER,
     },
-    howToUse:{
+    instructions:{
       type:DataTypes.TEXT,
     },
 });
