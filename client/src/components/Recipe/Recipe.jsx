@@ -1,6 +1,6 @@
 import React from 'react'
 import RecipeStyle from './RecipeStyle'
-export const Create = (props) => {
+export const Recipe = (props) => {
 
   return (
     <RecipeStyle>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Create = (props) => {
+export const Diets = (props) => {
   return (
     <div>
       <p>vegetariano</p>
