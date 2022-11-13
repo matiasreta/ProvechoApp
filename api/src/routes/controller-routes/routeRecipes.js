@@ -30,12 +30,21 @@ const getBDrecipes= async(name)=>{
     return list;
 }
 const getAllRecipes=async(name)=>{
-// contralar errores, no entra el recipes
+    // contralar errores, no entra el recipes
+    if(!name){
+        try{
+            const url= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=100&apiKey=${APIKEY}`)
+            let list=url.data.results.map(e=>{ return {id:e.id,name:e.title,image:e.image,diets:e.diets}});
+            return list;
+        }catch(e){
+            throw new Error(e.message)
+        }
+    }
     const apiList = await getAPIrecipes(name);
     const bdList= await getBDrecipes(name);
     const recipes=apiList.concat(bdList);
     if(!recipes[0]){
-        throw new Error("recipes does not exist");
+        throw new Error("no existe la receta con ese nombre");
     }
     return recipes;
 }

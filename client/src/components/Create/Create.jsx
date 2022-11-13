@@ -7,12 +7,19 @@ export const Create = (props) => {
 
 
 
+
   return (
     <div>
       <h3>Create Recipe</h3>
       <form action="">
-        <label htmlFor="">Name</label>
-        <input type="text" />
+        <label htmlFor="Name">Name</label>
+        <input type="text" name="name"/>
+
+        <label htmlFor="Summary">Summary</label>
+        <input type="text" name="Summary"/>
+
+        <label htmlFor="Summary">Summary</label>
+        <input type="text" name="Summary"/>
 
       </form>
     </div>

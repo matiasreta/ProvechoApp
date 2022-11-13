@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const RecipeStyle= styled.div`
+export const InformationStyle = styled.div`
 border: 1px solid black ;
 
 `
