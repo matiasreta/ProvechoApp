@@ -9,8 +9,8 @@ export const getAllRecipes=()=>{
     return function(dispatch){
         fetch(`http://localhost:3001/recipes/`)
         .then(response => response.json())
-        .then(data=> dispatch({type:GET_RECIPES,payload:data}))
-        //.catch((e)=>console.log(e))
+        .then(data=> dispatch({type:GET_RECIPES,payload:data.res}))
+        .catch((e)=>console.log(e))
     }
 }
 

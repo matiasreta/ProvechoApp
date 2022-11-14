@@ -1,23 +1,28 @@
 import React from "react";
 import { getAllRecipes } from "../../Redux/actions";
 import {useSelector,useDispatch} from 'react-redux'
+import { Recipe } from "../Recipe/Recipe";
 
 export const Home = ()=>{
 
-//const recipesList = useSelector(state=>state.recipes);
+const recipesList = useSelector(state=>state.recipes);
 const dispatch = useDispatch();
 
 React.useState(()=>{
 dispatch(getAllRecipes())
 },[dispatch])
 
-
-
   return(
     <div>
     <p>ESTO</p>
-    {"agragar map"}
-
+    {recipesList[0] && recipesList.map((e)=>{return(
+    <Recipe 
+      name={e.name}
+      image={e.image}
+      score={e.score}
+      key={e.id}/>
+      )})
+    }
     </div>
   )
 };

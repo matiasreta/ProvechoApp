@@ -33,9 +33,11 @@ const getAllRecipes=async(name)=>{
     // contralar errores, no entra el recipes
     if(!name){
         try{
-            const url= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=100&apiKey=${APIKEY}`)
-            let list=url.data.results.map(e=>{ return {id:e.id,name:e.title,image:e.image,diets:e.diets}});
-            return list[1];
+            //https://run.mocky.io/v3/bfcacc70-8ccc-4f69-b5bb-5084d21725c4
+            //const url= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=100&apiKey=${APIKEY}`)
+            const url= await axios.get(`https://run.mocky.io/v3/bfcacc70-8ccc-4f69-b5bb-5084d21725c4`)
+            let list=url.data.results.map(e=>{ return {id:e.id,name:e.title,image:e.image,diets:e.diets,score:e.healthScore}});
+            return list;
         }catch(e){
             throw new Error(e.message)
         }
@@ -51,8 +53,7 @@ const getAllRecipes=async(name)=>{
 router.get('/',async(req,res)=>{ 
     try{
         const {name} = req.query;
-        res.status(200).json({name:"pepe",arroz:"arroz"})
-        //res.status(200).send( await getAllRecipes(name))
+        res.status(200).json({res: await getAllRecipes(name)})
     }catch(e){
         res.status(404).json({ error: e.message })
     }
