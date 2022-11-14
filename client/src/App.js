@@ -13,7 +13,7 @@ function App() {
       <h1>Henry Food</h1>
       <Route path={'/'} component={SearchBar}/>
       <Route path={'/home'} component={Home}/>
-      <Route exact path={'/information'} component={Information}/>
+      <Route exact path={'/information/:id'}> <Information/> </Route>
       <Route exact path={'/CreateRecipe'} component={Create}/>
 
     </div>

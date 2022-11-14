@@ -14,12 +14,13 @@ dispatch(getAllRecipes())
 
   return(
     <div>
-    <p>ESTO</p>
+    <p>LISTA</p>
     {recipesList[0] && recipesList.map((e)=>{return(
     <Recipe 
       name={e.name}
       image={e.image}
       score={e.score}
+      id={e.id}
       key={e.id}/>
       )})
     }

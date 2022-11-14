@@ -19,7 +19,17 @@ export const getRecipesByName=(name)=>{
         fetch(`http://localhost:3001/recipes?name=${name}`)
         .then(response => response.json())
         .then(data=> dispatch({type:GET_RECIPES_BY_NAME,payload:data}))
-        //.catch((e)=>console.log(e))
+        .catch((e)=>console.log(e))
     }
+}
+
+export const getInformation=(id)=>{
+    return function(dispatch){
+        fetch(`http://localhost:3001/recipes/${id}`)
+        .then(response=>response.json())
+        .then(data=>dispatch({type:GET_INFORMATION,payload:data}))
+        .catch((e)=>console.log(e))
+    }
+
 }
 
