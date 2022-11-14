@@ -5,13 +5,13 @@ const initialState={
 }
 
 const reducer=(state=initialState,action)=>{
-    switch(action){
-        case GET_RECIPES:{
-            return{...state,recipes:action.payload}
-        }
-        default:{
-            return{...state}
-        }
+  switch(action.type){
+    case GET_RECIPES:{
+      return{...state,recipes:action.payload}
     }
+    default:{
+      return{...state}
+    }
+  }
 }
 export default reducer;

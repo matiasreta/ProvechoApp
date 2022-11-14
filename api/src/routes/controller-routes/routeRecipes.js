@@ -35,7 +35,7 @@ const getAllRecipes=async(name)=>{
         try{
             const url= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=100&apiKey=${APIKEY}`)
             let list=url.data.results.map(e=>{ return {id:e.id,name:e.title,image:e.image,diets:e.diets}});
-            return list;
+            return list[1];
         }catch(e){
             throw new Error(e.message)
         }
@@ -51,7 +51,8 @@ const getAllRecipes=async(name)=>{
 router.get('/',async(req,res)=>{ 
     try{
         const {name} = req.query;
-        res.status(200).send(await getAllRecipes(name))
+        res.status(200).json({name:"pepe",arroz:"arroz"})
+        //res.status(200).send( await getAllRecipes(name))
     }catch(e){
         res.status(404).json({ error: e.message })
     }
