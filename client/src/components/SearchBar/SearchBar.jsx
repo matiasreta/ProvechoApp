@@ -1,7 +1,11 @@
 import React from 'react'
+import {SearchBarStyle} from './SearchBarStyle'
 
 export const SearchBar = () => {
   return (
-    <div>SearchBar</div>
+    <SearchBarStyle>
+      <p>SearchBar</p>
+
+    </SearchBarStyle>
   )
 }

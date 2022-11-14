@@ -1,9 +1,10 @@
 import React from 'react'
+import {DietsStyle} from'./DietsStyle'
 
 export const Diets = (props) => {
   return (
-    <div>
+    <DietsStyle>
       <p>vegetariano</p>
-    </div>
+    </DietsStyle>
   )
 }

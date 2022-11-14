@@ -5,12 +5,16 @@ import reportWebVitals from './reportWebVitals';
 
 import {BrowserRouter} from 'react-router-dom';
 import {GlobalStyle} from './GlobalStyle';
+//import {Provider} from 'react-redux'
+//import {store} from './Redux/store'
 
 ReactDOM.render(
+  // <Provider store={store}>
     <BrowserRouter>
     <GlobalStyle/>
     <App />
     </BrowserRouter>,
+  // </Provider>
   document.getElementById('root')
 );
 

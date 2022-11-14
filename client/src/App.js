@@ -11,10 +11,10 @@ import {Create} from './components/Create/Create.jsx'
 function App() { 
   return (
     <div className="App">
-      <h1>Henry Food </h1>
-      <Route path={'/1'} component={SearchBar}/>
-      <Route path={'information'} component={Information}/>
-      <Route path={'/CreateRecipe'} component={Create}/>
+      <h1>Henry Food</h1>
+      <Route path={'/'} component={SearchBar}/>
+      <Route exact path={'/information'} component={Information}/>
+      <Route exact path={'/CreateRecipe'} component={Create}/>
 
     </div>
   );

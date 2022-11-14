@@ -1,14 +1,11 @@
 import React from 'react'
+import {InformationStyle} from './InformationStyle'
 
 export const Information = () => {
 
 
-
-
-
-
   return (
-    <div>
+    <InformationStyle>
       <h2>Dish information</h2>
         <img src="" alt="Dish-Information" />
         <p>Name</p>
@@ -19,9 +16,8 @@ export const Information = () => {
         <div>
         <h4>Comments</h4>
         <small>Summary</small>
-        </div>  
-
-    </div>
+        </div>
+    </InformationStyle>
   )
 }
 

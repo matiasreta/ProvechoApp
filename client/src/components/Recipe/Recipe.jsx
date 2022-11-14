@@ -1,5 +1,7 @@
 import React from 'react'
-import RecipeStyle from './RecipeStyle'
+import {RecipeStyle} from './RecipeStyle'
+
+
 export const Recipe = (props) => {
 
   return (

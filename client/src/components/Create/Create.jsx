@@ -1,4 +1,5 @@
 import React from 'react'
+import {CreateStyle} from './CreateStyle'
 
 export const Create = (props) => {
 //conecto con redux para enviar la info
@@ -9,7 +10,7 @@ export const Create = (props) => {
 
 
   return (
-    <div>
+    <CreateStyle>
       <h3>Create Recipe</h3>
       <form action="">
         <label htmlFor="Name">Name</label>
@@ -22,7 +23,7 @@ export const Create = (props) => {
         <input type="text" name="Summary"/>
 
       </form>
-    </div>
+    </CreateStyle>
   )
 }
 
