@@ -1,20 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+import reportWebVitals from './reportWebVitals'
 
-import {BrowserRouter} from 'react-router-dom';
-import {GlobalStyle} from './GlobalStyle';
-//import {Provider} from 'react-redux'
-//import {store} from './Redux/store'
+import {BrowserRouter} from 'react-router-dom'
+import {GlobalStyle} from './GlobalStyle'
+import {Provider} from 'react-redux'
+import store from './Redux/store'
 
 ReactDOM.render(
-  // <Provider store={store}>
+  <Provider store={store}>
     <BrowserRouter>
     <GlobalStyle/>
-    <App />
-    </BrowserRouter>,
-  // </Provider>
+    <App/>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
