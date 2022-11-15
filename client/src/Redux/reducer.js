@@ -1,8 +1,9 @@
-import { GET_RECIPES,GET_INFORMATION } from "./actions";
+import { GET_RECIPES,GET_INFORMATION,SET_RECIPE } from "./actions";
 
 const initialState={
     recipes:[],
     information:{},
+    responsePost:"esperando respuesta",
 }
 
 const reducer=(state=initialState,action)=>{
@@ -12,6 +13,9 @@ const reducer=(state=initialState,action)=>{
     }
     case GET_INFORMATION:{
       return{...state,information:action.payload}
+    }
+    case SET_RECIPE:{
+      return{...state,responsePost:action.payload}
     }
     default:{
       return{...state}

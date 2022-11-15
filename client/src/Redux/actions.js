@@ -1,3 +1,4 @@
+import axios from 'axios';
 export const GET_RECIPES = 'GETRECIPES'
 export const GET_INFORMATION = 'GET_INFORMATION'
 export const SET_RECIPE = 'SET_RECIPE'
@@ -13,7 +14,6 @@ export const getAllRecipes=()=>{
         .catch((e)=>console.log(e))
     }
 }
-
 export const getRecipesByName=(name)=>{
     return function(dispatch){
         fetch(`http://localhost:3001/recipes?name=${name}`)
@@ -22,7 +22,6 @@ export const getRecipesByName=(name)=>{
         .catch((e)=>console.log(e))
     }
 }
-
 export const getInformation=(id)=>{
     return function(dispatch){
         fetch(`http://localhost:3001/recipes/${id}`)
@@ -30,6 +29,13 @@ export const getInformation=(id)=>{
         .then(data=>dispatch({type:GET_INFORMATION,payload:data}))
         .catch((e)=>console.log(e))
     }
-
 }
+export const setNewRecipe=(newRecipe)=>{
+    return function(dispatch){
+            axios.post('http://localhost:3001/recipes',newRecipe)
+            .then(data=>dispatch({type:SET_RECIPE,payload:data.data.res}))
+            .catch(e=>e.message)
+    }
+}
+
 

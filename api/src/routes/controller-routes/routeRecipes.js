@@ -62,6 +62,7 @@ router.get('/',async(req,res)=>{
 //-----------------------------------------------------------------------------------------------------------------------------------------//
 
 const setBDrecipe= async(name,summary,instructions,score)=>{
+    if(!name||!summary||!instructions||!score)throw new Error("faltan datos")
     const newRecipe= await Recipe.create({name,summary,instructions,score})
     if(!newRecipe)throw new Error("no se pudo crear la receta")
     return "se creo con exito";
@@ -71,7 +72,7 @@ router.post('/',async (req,res)=>{
     try{
         const {name,summary,instructions,score}=req.body;
         //faltaria asociar las dietas del plato
-        res.status(201).send(await setBDrecipe(name,summary,instructions,score))
+        res.status(201).json({res: await setBDrecipe(name,summary,instructions,score)})
     }catch(e){
         res.status(400).json({ error: e.message })
         
@@ -90,8 +91,7 @@ const getInfoAPI=async(id)=>{
     }catch(e){
         (e.message)
         return null;
-    }
-    
+    } 
 }
 const getInfoBD=async(id)=>{
     try{
@@ -101,7 +101,6 @@ const getInfoBD=async(id)=>{
         (e.message)
         return null;
     }
-    
 }
 const getRecipeInfo=async(id)=>{
         const existAPI=await getInfoAPI(id);
