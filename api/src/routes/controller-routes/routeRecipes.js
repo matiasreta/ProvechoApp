@@ -71,7 +71,7 @@ const setBDrecipe= async(name,summary,instructions,score)=>{
 router.post('/',async (req,res)=>{
     try{
         const {name,summary,instructions,score}=req.body;
-        //faltaria asociar las dietas del plato
+        //faltaria asociar las dietas de la receta
         res.status(201).json({res: await setBDrecipe(name,summary,instructions,score)})
     }catch(e){
         res.status(400).json({ error: e.message })

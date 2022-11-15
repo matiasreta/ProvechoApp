@@ -34,7 +34,15 @@ export const setNewRecipe=(newRecipe)=>{
     return function(dispatch){
             axios.post('http://localhost:3001/recipes',newRecipe)
             .then(data=>dispatch({type:SET_RECIPE,payload:data.data.res}))
-            .catch(e=>e.message)
+            .catch((e)=>console.log(e))
+    }
+}
+export const getDiets = ()=>{
+    return function(dispatch){
+        fetch(`http://localhost:3001/diets`)
+        .then(response => response.json())
+        .then(data=> dispatch({type:GET_DIETS,payload:data}))
+        .catch((e)=>console.log(e))
     }
 }
 

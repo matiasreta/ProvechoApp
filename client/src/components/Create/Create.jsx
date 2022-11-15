@@ -1,18 +1,25 @@
 import React from 'react'
 import {CreateStyle} from './CreateStyle'
 import {useDispatch,useSelector} from 'react-redux'
-import {setNewRecipe} from '../../Redux/actions'
+import {setNewRecipe,getDiets} from '../../Redux/actions'
+import { Diets } from '../Diets/Diets'
 
 export const Create = (props) => {
 //conecto con redux para enviar la info
   const responsePost = useSelector(state=>state.responsePost)
+  const dietsList = useSelector(state=>state.diets)
   const dispatch = useDispatch();
+
+  React.useEffect(()=>{
+    dispatch(getDiets())
+  },[dispatch])
 
   const[newRecipe,setRecipe]=React.useState({
     name:"",
     summary:"",
     instructions:"",
     score:0,
+    //diets=[]
   })
 
   const clickHandler=(e)=>{
@@ -29,19 +36,25 @@ export const Create = (props) => {
       <form action="" onSubmit={(e)=>clickHandler(e)}>
         <label htmlFor="name">Name</label>
         <input type="text" name="name" onChange={(e)=>listener(e)}/>
-
+        <br />
         <label htmlFor="summary">Summary</label>
         <input type="text" name="summary" onChange={(e)=>listener(e)}/>
-
+        <br />
         <label htmlFor="instructions">Instructions</label>
         <input type="text" name="instructions" onChange={(e)=>listener(e)}/>
-
+        <br />
         <label htmlFor="score">Score</label>
         <input type="number" name="score" onChange={(e)=>listener(e)}/>
-
+        <br />
         <button type="submit">Create new recipe</button>
       </form>
       <p>| {responsePost } |</p>
+
+      {dietsList.map((e)=>{
+        return( <Diets onclick={()=>console.log(e.name)}  key={e.name} name={e.name}/>)
+      }
+      )}
+
     </CreateStyle>
   )
 }
