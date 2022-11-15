@@ -37,8 +37,8 @@ const { Recipe,Diet } = sequelize.models;
 
 ////////////////////////
 
-Recipe.belongsToMany(Diet,{through:'have'})
-Diet.belongsToMany(Recipe,{through:'have'})
+Recipe.belongsToMany(Diet,{through:"have"})
+Diet.belongsToMany(Recipe,{through:"have"})
 
 ////////////////////////
 

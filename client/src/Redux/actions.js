@@ -34,14 +34,14 @@ export const setNewRecipe=(newRecipe)=>{
     return function(dispatch){
             axios.post('http://localhost:3001/recipes',newRecipe)
             .then(data=>dispatch({type:SET_RECIPE,payload:data.data.res}))
-            .catch((e)=>console.log(e))
+            .catch((e)=>dispatch({type:SET_RECIPE,payload:e.response.data.error}))
     }
 }
 export const getDiets = ()=>{
     return function(dispatch){
         fetch(`http://localhost:3001/diets`)
         .then(response => response.json())
-        .then(data=> dispatch({type:GET_DIETS,payload:data}))
+        .then(data=> dispatch({type:GET_DIETS,payload:data.res}))
         .catch((e)=>console.log(e))
     }
 }
