@@ -1,4 +1,4 @@
-import {Route} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 
 import {SearchBar} from './components/SearchBar/SearchBar.jsx'
 import {Information} from './components/Information/Information.jsx'
@@ -11,11 +11,15 @@ import {Landing} from './components/Landing/Landing.jsx'
 function App() { 
   return (
     <div>
+      <Switch>
       <Route exact path={'/Landing'} component={Landing}/>
       <Route path={'/'} component={SearchBar}/>
+      </Switch>     
+      
       <Route path={'/home'} component={Home}/>
       <Route exact path={'/information/:id'}> <Information/> </Route>
       <Route exact path={'/createRecipe'} component={Create}/>
+      
     </div>
   );
 }
