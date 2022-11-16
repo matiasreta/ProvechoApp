@@ -7,20 +7,20 @@ export const Home = ()=>{
 
 const recipesList = useSelector(state=>state.recipes);
 const dispatch = useDispatch();
-
 React.useEffect(()=>{
 dispatch(getAllRecipes())
 },[dispatch])
-
+//////////////////////////////////////////////////////
+// (1) 0,9     =>    (2) 9,18     =>      (3) 18,27
+//////////////////////////////////////////////////////
 const [render,setRender]=React.useState([])
 const limit=9;
-const numbersOfPages= Math.round(recipesList.length/limit)
-// (1) 0,9 ]     =>    (2) 9,18     =>      (3) 18,27
+const numbersOfPages= Math.ceil(recipesList.length/limit)
 
 const actual=(number)=>{
- console.log(number)
- const newRender = recipesList.slice((limit*number)-limit,(limit*number))
- setRender(newRender)
+  console.log(number)
+  const newRender = recipesList.slice((limit*number)-limit,(limit*number))
+  setRender(newRender)
 }
 
 const buttonList=(numbers)=>{
@@ -39,16 +39,12 @@ const buttonList=(numbers)=>{
     <p>{numbersOfPages} paginas</p>
     {buttonList(numbersOfPages).map(e=>{return( <button key={e} onClick={()=>actual(e)} >{e}</button> )})}
 
-
-    
     {render.map((e)=>{return(
-    <Recipe 
-      name={e.name}
-      image={e.image}
-      score={e.score}
-      id={e.id}
-      key={e.id}/>
-      )})
+      <Recipe 
+        name={e.name} image={e.image} 
+        score={e.score} id={e.id}
+        key={e.id}
+      />)})
     }
     </div>
   )
