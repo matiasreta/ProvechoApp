@@ -49,7 +49,6 @@ const getBDrecipesByName= async(name)=>{
     return newList;
 }
 const getAllRecipesByName=async(name)=>{
-    // contralar errores, no entra el recipes
     const apiList = await getAPIrecipesByName(name);
     const bdList = await getBDrecipesByName(name);
     const recipes = apiList.concat(bdList);
@@ -71,7 +70,7 @@ const bdReq=async()=>{
         })
     const newList=list.map(e=>{
             const arr =e.diets.map(j=>j.name)
-             return {id:e.id,name:e.name,diets:arr,score:e.score};
+            return {id:e.id,name:e.name,diets:arr,score:e.score};
          })
     return newList;
 }
@@ -116,7 +115,6 @@ const setBDrecipe= async(name,summary,instructions,score,diets)=>{
 router.post('/',async (req,res)=>{
     try{
         const {name,summary,instructions,score,diets}=req.body;
-        //faltaria asociar las dietas de la receta
         res.status(201).json({res: await setBDrecipe(name,summary,instructions,score,diets)})
     }catch(e){
         res.status(400).json({ error: e.message })
@@ -150,8 +148,8 @@ const getRecipeInfo=async(id)=>{
         if(existAPI)return existAPI
         const existBD=await getInfoBD(id);
         if(existBD)return existBD
-        
-        throw new Error("Fallo")  
+
+        throw new Error("Fallo")
 }
 router.get('/:id',async(req,res)=>{
     try{
