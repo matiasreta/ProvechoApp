@@ -2,25 +2,28 @@ import React from "react";
 import { getAllRecipes } from "../../Redux/actions";
 import {useSelector,useDispatch} from 'react-redux'
 import { Recipe } from "../Recipe/Recipe";
+import {HomeStyle} from './HomeStyle'
+////////////////////////////////////////////////////////////////
+//limit=9    (1) 0,9     =>    (2) 9,18     =>      (3) 18,27
+////////////////////////////////////////////////////////////////
+
 
 export const Home = ()=>{
-
+  
 const recipesList = useSelector(state=>state.recipes);
+const [postion,setPostion]=React.useState(1)
+
 const dispatch = useDispatch();
 React.useEffect(()=>{
 dispatch(getAllRecipes())
 },[dispatch])
-//////////////////////////////////////////////////////
-// (1) 0,9     =>    (2) 9,18     =>      (3) 18,27
-//////////////////////////////////////////////////////
-const [render,setRender]=React.useState([])
+
+
 const limit=9;
 const numbersOfPages= Math.ceil(recipesList.length/limit)
-
-const actual=(number)=>{
-  console.log(number)
+const currentPage=(number)=>{
   const newRender = recipesList.slice((limit*number)-limit,(limit*number))
-  setRender(newRender)
+  return newRender;
 }
 
 const buttonList=(numbers)=>{
@@ -31,21 +34,24 @@ const buttonList=(numbers)=>{
   return list;
 }
 
+
   return(
     <div>
     <p>LISTA</p>
     <button>Next</button>
     <button>Previous</button>
+    <p>{postion}</p>
     <p>{numbersOfPages} paginas</p>
-    {buttonList(numbersOfPages).map(e=>{return( <button key={e} onClick={()=>actual(e)} >{e}</button> )})}
-
-    {render.map((e)=>{return(
+    {buttonList(numbersOfPages).map(e=>{return( <button key={e} onClick={()=>setPostion(e)} >{e}</button> )})}
+    <HomeStyle>
+    {currentPage(postion).map((e)=>{return(
       <Recipe 
         name={e.name} image={e.image} 
         score={e.score} id={e.id}
         key={e.id}
       />)})
     }
+    </HomeStyle>
     </div>
   )
 };
