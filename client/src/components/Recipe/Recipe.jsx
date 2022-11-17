@@ -7,11 +7,13 @@ export const Recipe = (props) => {
 
   return (
     <RecipeStyle>
-      <h2>Dish information</h2>
-        <img src={props.image} alt="Dish-Information" />
+        <img src={props.image} alt="Dish-Information" width="280" height="210" />
+        <div>
         <p>{props.name}</p>
         <p>Score: {props.score}</p>
         <Link to={`/information/${props.id}`}>informacion</Link>
+        </div>
+        
     </RecipeStyle>
   )
 }
