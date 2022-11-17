@@ -7,5 +7,6 @@ font-weight: bolder;
 color: #df1212;
 font-weight:bold;
 font-size: 12px;
+padding-right: 5px;
 
 `
