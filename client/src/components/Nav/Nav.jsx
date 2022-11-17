@@ -9,8 +9,9 @@ export const Nav = () => {
   return (
     <NavStyle>
       <div> 
-      <NavLinkStyle to={'/CreateRecipe'}> Create my recipe </NavLinkStyle>
-      <NavLinkStyle to={'/Home'}> Home </NavLinkStyle>
+      <NavLinkStyle to={'/Home'}> HOME </NavLinkStyle>
+      <NavLinkStyle to={'/CreateRecipe'}> CREATE RECIPE </NavLinkStyle>
+      
       </div>
       <div>
       <SearchBar/>
