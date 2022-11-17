@@ -1,28 +1,17 @@
 import styled from 'styled-components'
 
 export const RecipeStyle= styled.div`
-
+display: grid;
 max-width: 280px;
 background-color: #FFF6DE;
-margin-bottom: 20px;
+margin-bottom: 0px;
 border: 1px solid #cccccc;
 box-sizing: content-box;
+margin-bottom: 1.1rem;
 
 
-div{
-    padding-top:1rem;
-    margin: auto;
-    width: 200px;
-    height:140px
-
-}
 :hover{
     background-color: #fffaed;
-}
-p{  
-    font-family: 'Lora', serif;
-    font-style:normal;
-    font-size: 1.2rem;
 }
 
 `

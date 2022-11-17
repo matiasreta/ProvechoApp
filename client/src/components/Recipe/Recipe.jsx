@@ -1,18 +1,26 @@
 import React from 'react'
 import {RecipeStyle} from './RecipeStyle'
-import { Link } from 'react-router-dom'
-
+import { Diets } from '../Diets/Diets'
+import { CardInfo } from './CardInfo'
+import {LinkInformation} from './LinkInformation'
 
 export const Recipe = (props) => {
 
   return (
     <RecipeStyle>
         <img src={props.image} alt="Dish-Information" width="280" height="210" />
-        <div>
-        <p>{props.name}</p>
-        <p>Score: {props.score}</p>
-        <Link to={`/information/${props.id}`}>informacion</Link>
-        </div>
+        <CardInfo>
+        <h3>{props.name}</h3>
+        <p>Health Score: {props.score}</p>
+        <br />
+
+        {props.diets.map(e=>{
+          return(<Diets name={e} key={e}/>)
+        })}
+
+        
+        </CardInfo>
+        <LinkInformation to={`/information/${props.id}`}>information</LinkInformation>
         
     </RecipeStyle>
   )

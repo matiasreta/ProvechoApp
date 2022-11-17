@@ -48,7 +48,7 @@ const buttonList=(numbers)=>{
       <Recipe 
         name={e.name} image={e.image} 
         score={e.score} id={e.id}
-        key={e.id}
+        key={e.id} diets={e.diets}
       />)})
     }
     </HomeStyle>
