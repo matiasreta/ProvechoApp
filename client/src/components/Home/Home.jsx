@@ -1,33 +1,44 @@
 import React from "react";
-//import { getAllRecipes } from "../../Redux/actions"; {useDispatch}
 import {useSelector} from 'react-redux'
 import { Recipe } from "../Recipe/Recipe";
 import {HomeStyle} from './HomeStyle'
 import {PaginateStyle} from './PaginateStyle'
 import { FilterStyle } from "./FilterStyle";
-
-
 ////////////////////////////////////////////////////////////////
 //limit=9    (1) 0,9     =>    (2) 9,18     =>      (3) 18,27
 ////////////////////////////////////////////////////////////////
 
 
 export const Home = ()=>{
-  
+
 const recipesList = useSelector(state=>state.recipes);
 const [postion,setPostion]=React.useState(1)
+const [orderType,setOrderType] = React.useState('alphabet');
+const [upDown,setUpDown]=React.useState(true);
 
-// const dispatch = useDispatch();
-React.useEffect(()=>{
-// dispatch(getAllRecipes())
-},[recipesList])
-
+React.useEffect(()=>{},[recipesList])
 
 const limit=9;
 const numbersOfPages= Math.ceil(recipesList.length/limit)
+
 const currentPage=(number)=>{
-  const newRender = recipesList.slice((limit*number)-limit,(limit*number))
+  const newRender = order(recipesList).slice((limit*number)-limit,(limit*number))
   return newRender;
+}
+
+const order=(arr)=>{
+  if(upDown){
+    const newArr =arr.sort((e,o)=>e[orderType]>o[orderType]?1:-1)
+    return newArr;
+  }else{
+    const newArr= arr.sort((e,o)=>e[orderType]>o[orderType]?-1:1)
+    return newArr;
+  }
+}
+
+const setOrder=(e,value)=>{
+  setOrderType(e.target.name)
+  setUpDown(value)
 }
 
 const buttonList=(numbers)=>{
@@ -37,10 +48,6 @@ const buttonList=(numbers)=>{
   }
   return list;
 }
-// estado tipo de orden
-// boton ejecuta el orden
-// click en dieta filtra por el tipo (includes,tolowerCase)
-// traer dietas
 
   return(
     <div>
@@ -50,10 +57,12 @@ const buttonList=(numbers)=>{
     </PaginateStyle>
 
     <FilterStyle>
-    <p>order by alphabet</p>
+    <p>alphabetical order</p>
+    <button name="name" onClick={(e)=>setOrder(e,true)} >⬆️</button>
+    <button name="name" onClick={(e)=>setOrder(e,false)}> ⬇️</button>
     <p>order by health score</p>
-    <button>⬆️</button>
-    <button>⬇️</button>
+    <button name="score" onClick={(e)=>setOrder(e,false)}>⬆️</button>
+    <button name="score" onClick={(e)=>setOrder(e,true)} >⬇️</button>
     <p>lista de dietas, onclick filtrado</p>
     </FilterStyle>
     
@@ -81,6 +90,7 @@ const buttonList=(numbers)=>{
         "dairy free",
         "lacto ovo vegetarian",
         "vegan"
-    ]
+    ],
+    "score":100
 }
 */
