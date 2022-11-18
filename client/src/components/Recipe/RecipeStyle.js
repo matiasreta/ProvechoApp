@@ -12,7 +12,6 @@ border: 1px solid #cccccc;
 box-sizing: content-box;
 margin-bottom: 1.1rem;
 
-
 :hover{
     //background-color: #fffaed;
     background-color: #f6f9fc;

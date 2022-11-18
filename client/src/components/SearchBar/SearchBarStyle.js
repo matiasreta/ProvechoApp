@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-
-
 export const SearchBarStyle=styled.div`
 display: inline-flex;
 height: 30px;
@@ -24,8 +22,12 @@ overflow-x: hidden;
 
 }
 .material-symbols-outlined{
-    border-bottom: 2px solid #f71111ff;
-
+    :hover{
+    color: red;
 }
-
+    
+}
+div{
+border-bottom: 2px solid #f71111ff;
+}
 `

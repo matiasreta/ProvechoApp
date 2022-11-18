@@ -11,7 +11,6 @@ export const Nav = () => {
       <div> 
       <NavLinkStyle to={'/Home'}> HOME </NavLinkStyle>
       <NavLinkStyle to={'/CreateRecipe'}> CREATE RECIPE </NavLinkStyle>
-      
       </div>
       <div>
       <SearchBar/>

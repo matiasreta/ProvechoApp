@@ -1,9 +1,11 @@
 import React from "react";
-import { getAllRecipes } from "../../Redux/actions";
-import {useSelector,useDispatch} from 'react-redux'
+//import { getAllRecipes } from "../../Redux/actions"; {useDispatch}
+import {useSelector} from 'react-redux'
 import { Recipe } from "../Recipe/Recipe";
 import {HomeStyle} from './HomeStyle'
 import {PaginateStyle} from './PaginateStyle'
+import { FilterStyle } from "./FilterStyle";
+
 
 ////////////////////////////////////////////////////////////////
 //limit=9    (1) 0,9     =>    (2) 9,18     =>      (3) 18,27
@@ -15,10 +17,10 @@ export const Home = ()=>{
 const recipesList = useSelector(state=>state.recipes);
 const [postion,setPostion]=React.useState(1)
 
-const dispatch = useDispatch();
+// const dispatch = useDispatch();
 React.useEffect(()=>{
-dispatch(getAllRecipes())
-},[dispatch])
+// dispatch(getAllRecipes())
+},[recipesList])
 
 
 const limit=9;
@@ -47,13 +49,13 @@ const buttonList=(numbers)=>{
     {buttonList(numbersOfPages).map(e=>{return( <button key={e} onClick={()=>setPostion(e)} >{e}</button> )})}
     </PaginateStyle>
 
-    <div>
+    <FilterStyle>
     <p>order by alphabet</p>
     <p>order by health score</p>
     <button>⬆️</button>
     <button>⬇️</button>
     <p>lista de dietas, onclick filtrado</p>
-    </div>
+    </FilterStyle>
     
 
     <HomeStyle>

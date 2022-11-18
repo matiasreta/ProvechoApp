@@ -11,5 +11,4 @@ align-items: flex-end;
 padding-bottom:10px;
 padding-right: 100px;
 font-size: 16px;
-
 `
