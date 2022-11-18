@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const NavStyle = styled.div`
 height: 100px;
+font-family: 'Lora', serif;
 display: flex;
 background-color: #FFF6DE;
 border-bottom: 1px solid #efdffa;

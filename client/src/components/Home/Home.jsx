@@ -3,6 +3,8 @@ import { getAllRecipes } from "../../Redux/actions";
 import {useSelector,useDispatch} from 'react-redux'
 import { Recipe } from "../Recipe/Recipe";
 import {HomeStyle} from './HomeStyle'
+import {PaginateStyle} from './PaginateStyle'
+
 ////////////////////////////////////////////////////////////////
 //limit=9    (1) 0,9     =>    (2) 9,18     =>      (3) 18,27
 ////////////////////////////////////////////////////////////////
@@ -33,16 +35,27 @@ const buttonList=(numbers)=>{
   }
   return list;
 }
-
+// estado tipo de orden
+// boton ejecuta el orden
+// click en dieta filtra por el tipo (includes,tolowerCase)
+// traer dietas
 
   return(
     <div>
-    <p>LISTA</p>
-    <button>Next</button>
-    <button>Previous</button>
-    <p>{postion}</p>
-    <p>{numbersOfPages} paginas</p>
+
+    <PaginateStyle>
     {buttonList(numbersOfPages).map(e=>{return( <button key={e} onClick={()=>setPostion(e)} >{e}</button> )})}
+    </PaginateStyle>
+
+    <div>
+    <p>order by alphabet</p>
+    <p>order by health score</p>
+    <button>⬆️</button>
+    <button>⬇️</button>
+    <p>lista de dietas, onclick filtrado</p>
+    </div>
+    
+
     <HomeStyle>
     {currentPage(postion).map((e)=>{return(
       <Recipe 
