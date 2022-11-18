@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const RecipeStyle= styled.div`
 display: grid;
+text-align: center;
 max-width: 280px;
 background-color: #FFF6DE;
 //#eadeff;

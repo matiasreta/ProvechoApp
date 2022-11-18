@@ -10,7 +10,6 @@ height: 30px;
 justify-content: center;
 align-items: center;
 color: black;
-
 text-decoration: none;
 
 border-top: 1px solid #cccccc;

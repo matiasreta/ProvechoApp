@@ -7,10 +7,9 @@ font-size: 12px;
 margin: auto;
 
 
-width: 200px;
+width: 230px;
 height: 180px;
     h3{
-
         padding-top: 1rem;
         font-size: 1.2rem;
         font-weight: 600;

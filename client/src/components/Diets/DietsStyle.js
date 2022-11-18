@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const DietsStyle = styled.p `
+export const DietsStyle = styled.p`
 display: inline-flex;
 font-family: 'Lora', serif;
 font-weight: bolder;
