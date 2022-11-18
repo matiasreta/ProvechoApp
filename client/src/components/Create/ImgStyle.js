@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 export const ImgStyle = styled.div`
-width: 560px;
-height: 920px;
+max-width: 400px;
+
+min-height: 700px;
+max-height: 920px;
 background-image: url(${props => props.img});
 background-size:cover;
-background-position:right;
+background-position:left;
 background-repeat:no-repeat;
 `

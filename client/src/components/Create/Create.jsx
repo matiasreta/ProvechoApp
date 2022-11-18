@@ -5,6 +5,9 @@ import {setNewRecipe,getDiets} from '../../Redux/actions'
 import { Diets } from '../Diets/Diets'
 import img from '../../img/1111.webp'
 import {ImgStyle} from './ImgStyle'
+import {FormStyle} from './FormStyle'
+import {InputStyle} from './InputStyle'
+import {RangeStyle} from './RangeStyle'
 
 export const Create = (props) => {
 //conecto con redux para enviar la info
@@ -21,7 +24,7 @@ export const Create = (props) => {
     summary:"",
     instructions:"",
     score:0,
-    //diets=[]
+    diets:[],
   })
 
   const clickHandler=(e)=>{
@@ -35,29 +38,35 @@ export const Create = (props) => {
   return (
     <CreateStyle>
       
-      <ImgStyle img={img}>
-      </ImgStyle>
-      <form action="" onSubmit={(e)=>clickHandler(e)}>
+      <ImgStyle img={img}></ImgStyle>
+      <FormStyle action="" onSubmit={(e)=>clickHandler(e)}>
 
         <div>
           <h3>NEW RECIPE</h3>
-          <label htmlFor="name">Name</label>
-          <input type="text" name="name" onChange={(e)=>listener(e)}/>
+          <label htmlFor="name"></label>
+          <InputStyle type="text" name="name" placeholder='Name' onChange={(e)=>listener(e)}/>
         </div>
 
         <div>
-          <label htmlFor="summary">Summary</label>
-          <input type="text" name="summary" onChange={(e)=>listener(e)}/>
+          <label htmlFor="summary"></label>
+          <textarea name="summary" placeholder='Summary' onChange={(e)=>listener(e)} ></textarea>
         </div>
 
         <div>
-          <label htmlFor="instructions">Instructions</label>
-          <input type="text" name="instructions" onChange={(e)=>listener(e)}/>
+          <label htmlFor="instructions"></label>
+          <textarea name="instructions" placeholder='Instructions' onChange={(e)=>listener(e)} ></textarea>
         </div>
 
         <div>
-          <label htmlFor="score">Score</label>
-          <input type="number" name="score" onChange={(e)=>listener(e)}/>
+          <label htmlFor="score"></label>
+          <RangeStyle type="number"placeholder='Range' name="score" onChange={(e)=>listener(e)}/>
+          <label htmlFor="diets"></label>
+          <RangeStyle type='text' placeholder='Diets' list='dietas' name="diets" onChange={(e)=>listener(e)}/>
+          <datalist id="dietas">
+            { dietsList.map(e=>{
+              return( <option value={e.name} key={e.id}></option> )
+            })}
+          </datalist>
         </div>
 
         <div>
@@ -71,11 +80,12 @@ export const Create = (props) => {
 
         <div>
           <button type="submit">Create new recipe</button>
+          <p>| {responsePost } |</p>
         </div>
 
-      </form>
+      </FormStyle>
 
-      <p>| {responsePost } |</p>
+     
 
       
 

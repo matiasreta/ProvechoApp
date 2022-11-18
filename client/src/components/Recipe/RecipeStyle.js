@@ -14,7 +14,8 @@ margin-bottom: 1.1rem;
 
 
 :hover{
-    background-color: #fffaed;
+    //background-color: #fffaed;
+    background-color: #f6f9fc;
 }
 
 `
