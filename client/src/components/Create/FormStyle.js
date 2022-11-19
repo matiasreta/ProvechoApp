@@ -1,15 +1,14 @@
 import styled from "styled-components";
 
 export const FormStyle = styled.form`
+margin: auto;
 display: flex;
 flex-flow: column;
-
-
 
 h3{
     text-align:center;
     margin-bottom:20px;
-    padding-top: 1.3rem;
+    padding-top: 1.6rem;
     font-size: 1.2rem;
     font-weight: 600;
     font-family: 'Lora', serif;
@@ -17,7 +16,7 @@ h3{
 
 div{
     
-    margin-bottom: auto;
+    margin-bottom: 40px;
     width: 400px;
     height: 100px;
     

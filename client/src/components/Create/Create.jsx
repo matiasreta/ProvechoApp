@@ -29,10 +29,70 @@ export const Create = (props) => {
 
   const clickHandler=(e)=>{
     e.preventDefault();
+    // si no hay errores dispatch 0 errores 
     dispatch(setNewRecipe(newRecipe))
   }
   const listener=(e)=>{
-    setRecipe({...newRecipe, [e.target.name]:e.target.value})
+    if(errorHandler(e)){
+      setRecipe({...newRecipe, [e.target.name]:e.target.value})
+    }
+  }
+  const [eMessage,setError]=React.useState({
+    name:"",
+    summary:"",
+    instructions:"",
+    score:"",
+    count:0,
+  })
+
+  const errorHandler=(e)=>{
+    const regex=/\S\D/gi;
+    if(e.target.name==='score'){
+      if(e.target.value>100 ){
+       if(eMessage[e.target.name]==="maximo score 100")return false;
+        setError({...eMessage,[e.target.name]:"maximo score 100",count:eMessage.count+1})
+        return false;
+
+      }else if(e.target.value<0 ){
+        if(eMessage[e.target.name]==="no se permite numero negativos")return false;
+        setError({...eMessage,[e.target.name]:"no se permite numero negativos",count:eMessage.count+1})
+        return false;
+      }
+    }else if(!regex.test(e.target.value)){
+      if(eMessage[e.target.name]==="campo vacio")return false;
+      setError({...eMessage,[e.target.name]:"campo vacio",count:eMessage.count+1})
+      return false;
+
+    }else if(eMessage[e.target.name]==="")return true;
+    setError({...eMessage,[e.target.name]:"",count:eMessage.count>0?eMessage.count-1:0})
+    return true;
+  }
+
+  const [arrDiets,setArrDiets]=React.useState([]);
+
+  const selectDiets=(e)=>{
+    if(e.target.value.length<4)return null
+
+    dietsList.forEach((o)=> {
+      if(o.name.includes(e.target.value)){
+        if(!newRecipe.diets.includes(o.id)){
+          setRecipe({...newRecipe, diets:newRecipe.diets.concat([o.id])})
+          setArrDiets([...arrDiets,{id:o.id,name:o.name}])
+        }
+        
+      }
+    });
+  }
+
+  const reset=()=>{
+    setArrDiets([])
+    setRecipe({
+      name:"",
+      summary:"",
+      instructions:"",
+      score:0,
+      diets:[],
+    })
   }
 
   return (
@@ -45,49 +105,54 @@ export const Create = (props) => {
           <h3>NEW RECIPE</h3>
           <label htmlFor="name"></label>
           <InputStyle type="text" name="name" placeholder='Name' onChange={(e)=>listener(e)}/>
+          <small>{ eMessage.name}</small>
         </div>
 
         <div>
           <label htmlFor="summary"></label>
           <textarea name="summary" placeholder='Summary' onChange={(e)=>listener(e)} ></textarea>
+          <small>{ eMessage.summary}</small>
         </div>
 
         <div>
           <label htmlFor="instructions"></label>
           <textarea name="instructions" placeholder='Instructions' onChange={(e)=>listener(e)} ></textarea>
+          <small>{ eMessage.instructions}</small>
         </div>
 
         <div>
           <label htmlFor="score"></label>
-          <RangeStyle type="number"placeholder='Range' name="score" onChange={(e)=>listener(e)}/>
+          <RangeStyle type="number" placeholder='Range' name="score" onChange={(e)=>listener(e)}/>
+
           <label htmlFor="diets"></label>
-          <RangeStyle type='text' placeholder='Diets' list='dietas' name="diets" onChange={(e)=>listener(e)}/>
+          <RangeStyle type='text' placeholder='Diets' list='dietas' name="diets" onChange={(e)=>selectDiets(e)} />
           <datalist id="dietas">
-            { dietsList.map(e=>{
+            {dietsList.map(e=>{
               return( <option value={e.name} key={e.id}></option> )
             })}
           </datalist>
+          <small>{ eMessage.score}</small>
         </div>
 
         <div>
-          <p>diets</p>
-          {dietsList.map((e)=>{
-            return( <Diets onclick={()=>console.log(e.name)}
-            key={e.name} name={e.name}/>)
-          }
-          )}
+          <p>diets:</p>
+          {arrDiets.map(o=>{ return (<Diets key={o.id} name={o.name} />)})}
+
         </div>
 
         <div>
+          
+        
+          
+          
+           
+          <p> {responsePost}</p>
           <button type="submit">Create new recipe</button>
-          <p>| {responsePost } |</p>
+          <input type='reset' onClick={()=>reset()} value='reset'/>
+          
         </div>
 
       </FormStyle>
-
-     
-
-      
 
     </CreateStyle>
   )
