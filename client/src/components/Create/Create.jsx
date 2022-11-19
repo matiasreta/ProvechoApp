@@ -29,8 +29,12 @@ export const Create = (props) => {
 
   const clickHandler=(e)=>{
     e.preventDefault();
-    // si no hay errores dispatch 0 errores 
-    dispatch(setNewRecipe(newRecipe))
+    if(eMessage.count===0){
+      dispatch(setNewRecipe(newRecipe))
+    }else{
+      alert("complete los campos con los datos requeridos")
+    }
+    
   }
   const listener=(e)=>{
     if(errorHandler(e)){
@@ -42,7 +46,7 @@ export const Create = (props) => {
     summary:"",
     instructions:"",
     score:"",
-    count:0,
+    count:1,
   })
 
   const errorHandler=(e)=>{
@@ -132,23 +136,16 @@ export const Create = (props) => {
             })}
           </datalist>
           <small>{ eMessage.score}</small>
-        </div>
-
-        <div>
-          <p>diets:</p>
+          <div>
           {arrDiets.map(o=>{ return (<Diets key={o.id} name={o.name} />)})}
 
+          </div>
         </div>
 
-        <div>
-          
         
-          
-          
-           
-          <p> {responsePost}</p>
-          <button type="submit">Create new recipe</button>
-          <input type='reset' onClick={()=>reset()} value='reset'/>
+        <div>
+          <button type="submit">{responsePost}</button>
+          <input type='reset' className='reset' onClick={()=>reset()} value='Reset'/>
           
         </div>
 

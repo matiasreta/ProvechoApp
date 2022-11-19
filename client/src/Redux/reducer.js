@@ -4,7 +4,7 @@ const initialState={
     recipes:[],
     information:{},
     diets:[],
-    responsePost:"esperando respuesta",
+    responsePost:"Create new recipe",
 }
 
 const reducer=(state=initialState,action)=>{
