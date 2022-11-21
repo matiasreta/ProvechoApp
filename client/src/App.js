@@ -6,11 +6,13 @@ import {Create} from './components/Create/Create.jsx'
 import {Home} from './components/Home/Home.jsx'
 import {Landing} from './components/Landing/Landing.jsx'
 
+import {BrowserRouter as Router} from 'react-router-dom'
 
 
 function App() { 
-  return ( <div>
+  return ( <Router>
     <AppStyle>
+      
       <Switch>
       <Route exact path={'/Landing'} component={Landing}/>
       <Route path={'/'} component={Nav}/>
@@ -21,7 +23,7 @@ function App() {
       <Route exact path={'/createRecipe'} component={Create}/>
       
     </AppStyle>
-    </div>
+    </Router>
   );
 }
 

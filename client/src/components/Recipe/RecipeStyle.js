@@ -4,7 +4,7 @@ export const RecipeStyle= styled.div`
 display: grid;
 text-align: center;
 max-width: 280px;
-background-color: #FFF6DE;
+background-color: #C9CEFF;
 //#eadeff;
 //#FFF6DE
 margin-bottom: 0px;
@@ -14,7 +14,7 @@ margin-bottom: 1.1rem;
 
 :hover{
     //background-color: #fffaed;
-    background-color: #f6f9fc;
+    background-color: #eadeff;
 }
 
 `
