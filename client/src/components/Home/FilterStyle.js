@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
 export const FilterStyle = styled.div`
-background-color: aliceblue;
+//background-color: #ece0d9;
+//background: linear-gradient(180deg, rgba(255,255,255,1) 3%, #e6d7ce 15%);
+//background: linear-gradient(180deg, rgba(255,255,255,1) 0%, #e6d7ce 100%, #e6d7ce);
+//background-color: #fafafa;
+
+border: 1px solid gray;
 margin-left:320px;
 padding-left: 30px;
 h4{
+    color:#ADC178;
     margin-top: 2rem; 
     margin-bottom: 0.4rem; 
 }
@@ -17,7 +23,7 @@ p{
     height: 30px;
     text-align: center;
     width: 180px;
-    background-color: #eeeeee;
+    background-color: #ece0d9;
     font-size: 13px;
 }
 .diets{
@@ -36,15 +42,16 @@ p{
   'opsz' 48
 }
 button{
-    background-color: #eeeeee;
+    background-color: #ece0d9;
     border: 0px;
-    border-bottom:1px solid #7dd37d;
+    border-bottom:1px solid #b8b9b4;
+
     width: 60px;
     height: 26px;
-    margin-bottom: 10px;
+    margin-bottom:8px;
 
 :hover{
-    background-color: #7dd37d;
+    background-color: #ADC178;
 }
 }
 

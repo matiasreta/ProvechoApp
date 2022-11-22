@@ -3,12 +3,12 @@ import styled from "styled-components";
 
 export const NavLinkStyle = styled(NavLink)`
 padding-right: 40px;
-color: #9BD082;
-
+color: #ffffff;
+font-weight: lighter;
 text-decoration: none;
 
 :hover{
-    color: #bbf0a2;
+    color: #ADC178;
 }
 
 `

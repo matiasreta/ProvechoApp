@@ -11,6 +11,6 @@ align-items: center;
 color: black;
 text-decoration: none;
 
-border-top: 1px solid #cccccc;
+border-top: 1px solid #d6e7a8;
 
 `

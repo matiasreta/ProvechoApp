@@ -72,8 +72,10 @@ const buttonList=(numbers)=>{
     </PaginateStyle>
     <TemplateStyle>
       <FilterStyle>
+      
         <h4>Most viewed recipes</h4>
         <small>{recipesList.length} results, {numbersOfPages} pages </small>
+        <div>
         <p>Alphabetical Order</p>
         <button name="name" onClick={(e)=>changeOrder(e,"mayor")} className="material-symbols-outlined">arrow_upward</button>
         <button name="name" onClick={(e)=>changeOrder(e,"menor")} className="material-symbols-outlined">arrow_downward</button>
@@ -82,7 +84,7 @@ const buttonList=(numbers)=>{
         <button name="score" onClick={(e)=>changeOrder(e,"menor")} className="material-symbols-outlined">arrow_upward</button>
         <button name="score" onClick={(e)=>changeOrder(e,"mayor")} className="material-symbols-outlined">arrow_downward</button>
         <button name="score" onClick={(e)=>changeOrder(e,"desactivado")} className="material-symbols-outlined">mobiledata_off</button>
-        <div>
+        
           {DietsList.map((e)=>{
             return(<button className="diets" key={e.id}>
               {e.name}

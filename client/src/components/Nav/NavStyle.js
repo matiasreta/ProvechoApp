@@ -5,7 +5,8 @@ export const NavStyle = styled.div`
 height: 100px;
 font-family: 'Lora', serif;
 display: flex;
-background-color: #fff4db;
+background-color: #6b594d;
+//background-color: #fff4db;
 justify-content: end;
 align-items: flex-end;
 padding-bottom:10px;
