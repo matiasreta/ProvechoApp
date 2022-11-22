@@ -4,7 +4,8 @@ export const SearchBarStyle=styled.div`
 display: inline-flex;
 height: 30px;
 width: 250px;
-background-color: #FFF6DE;
+background-color: #9BD082;
+
 
 input{
 
@@ -13,7 +14,7 @@ input{
 ::-webkit-search-results-button,
 ::-webkit-search-results-decoration { display: none; }
 
-background-color: #FFF6DE;
+background-color: #9BD082;
 width: 200px;
 border: none;
 border-bottom: 2px solid #f71111ff;

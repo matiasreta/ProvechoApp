@@ -8,37 +8,47 @@ import { FilterStyle } from "./FilterStyle";
 //limit=9    (1) 0,9     =>    (2) 9,18     =>      (3) 18,27
 ////////////////////////////////////////////////////////////////
 
-
 export const Home = ()=>{
 
-const recipesList = useSelector(state=>state.recipes);
-const [postion,setPostion]=React.useState(1)
-const [orderType,setOrderType] = React.useState('alphabet');
-const [upDown,setUpDown]=React.useState(true);
+  const recipesList = useSelector(state=>state.recipes);
+  const [postion,setPostion]=React.useState(1)
+  const [order,setOrder]=React.useState([{type:'name',value:"desactivado"},{type:'score',value:"desactivado"}]);
 
-React.useEffect(()=>{},[recipesList])
 
-const limit=9;
-const numbersOfPages= Math.ceil(recipesList.length/limit)
+  React.useEffect(()=>{},[recipesList])
+  const limit=9;
+  const numbersOfPages= Math.ceil(recipesList.length/limit)
 
-const currentPage=(number)=>{
-  const newRender = order(recipesList).slice((limit*number)-limit,(limit*number))
-  return newRender;
-}
-
-const order=(arr)=>{
-  if(upDown){
-    const newArr =arr.sort((e,o)=>e[orderType]>o[orderType]?1:-1)
-    return newArr;
-  }else{
-    const newArr= arr.sort((e,o)=>e[orderType]>o[orderType]?-1:1)
-    return newArr;
+  const currentPage=(number)=>{
+    const newRender = orderedList(recipesList).slice((limit*number)-limit,(limit*number))
+    return newRender;
   }
-}
 
-const setOrder=(e,value)=>{
-  setOrderType(e.target.name)
-  setUpDown(value)
+  const orderedList=(arr)=>{
+  let ordered=arr;
+  // 4 posibilidades de ordenado, y pueden ser mas...
+    order.forEach((element) => {
+      if(element.value==='mayor'){
+        ordered = ordered.sort((fe,se)=>{
+          return (fe[element.type]===se[element.type]?0:fe[element.type]>se[element.type]?1:-1)})
+      }if(element.value==='menor') {
+        ordered = ordered.sort((fe,se)=>{
+          return (fe[element.type]===se[element.type]?0:fe[element.type]>se[element.type]?-1:1)})
+      }
+    });
+    return ordered;
+  }
+
+const changeOrder=(event,value)=>{
+  let newOrder=[]
+  order.forEach(element => {
+    if(element.type===event.target.name){
+      newOrder.push({type:event.target.name,value:value})
+    }else{
+      newOrder.push(element)
+    }
+  });
+  setOrder(newOrder)
 }
 
 const buttonList=(numbers)=>{
@@ -51,21 +61,22 @@ const buttonList=(numbers)=>{
 
   return(
     <div>
-
+      {console.log(order)}
     <PaginateStyle>
     {buttonList(numbersOfPages).map(e=>{return( <button key={e} onClick={()=>setPostion(e)} >{e}</button> )})}
     </PaginateStyle>
 
     <FilterStyle>
-    <p>alphabetical order</p>
-    <button name="name" onClick={(e)=>setOrder(e,true)} >⬆️</button>
-    <button name="name" onClick={(e)=>setOrder(e,false)}> ⬇️</button>
-    <p>order by health score</p>
-    <button name="score" onClick={(e)=>setOrder(e,false)}>⬆️</button>
-    <button name="score" onClick={(e)=>setOrder(e,true)} >⬇️</button>
+    <h3>alphabetical order</h3>
+    <button name="name" onClick={(e)=>changeOrder(e,"mayor")} className="material-symbols-outlined">arrow_upward</button>
+    <button name="name" onClick={(e)=>changeOrder(e,"menor")} className="material-symbols-outlined">arrow_downward</button>
+    <button name="name" onClick={(e)=>changeOrder(e,"desactivado")} className="material-symbols-outlined">mobiledata_off</button>
+    <h3>order by health score</h3>
+    <button name="score" onClick={(e)=>changeOrder(e,"menor")} className="material-symbols-outlined">arrow_upward</button>
+    <button name="score" onClick={(e)=>changeOrder(e,"mayor")} className="material-symbols-outlined">arrow_downward</button>
+    <button name="score" onClick={(e)=>changeOrder(e,"desactivado")} className="material-symbols-outlined">mobiledata_off</button>
     <p>lista de dietas, onclick filtrado</p>
     </FilterStyle>
-    
 
     <HomeStyle>
     {currentPage(postion).map((e)=>{return(

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const NavLinkStyle = styled(NavLink)`
 padding-right: 40px;
-color: grey;
+color: white;
 
 text-decoration: none;
 
