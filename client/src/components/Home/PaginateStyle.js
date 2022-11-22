@@ -4,14 +4,14 @@ export const PaginateStyle = styled.div`
 
 display: flex;
 justify-content: center;
+margin-left: 300px;
 padding:30px;
 
 button{
- font-size:14px;
- background-color: #fffff7;
- font-family: 'Lora', serif;
+ font-size:13px;
+ background-color: white;
  border: 0px;
- border-bottom: 1px solid #d5c1f7;
+ border-bottom: 1px solid #af87f3;
  padding: 4px;
 
  :hover{

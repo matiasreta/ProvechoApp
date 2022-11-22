@@ -50,7 +50,7 @@ button{
 .reset{
     margin-top: 10px;
     border: 1px solid #fda8a8;
-    background-color:#f14944; 
+    background-color:#f14944;
     color: white;
     height: 30px;
     width: 130px;

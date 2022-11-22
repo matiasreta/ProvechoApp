@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 
 export const NavStyle = styled.div`
+
 height: 100px;
 font-family: 'Lora', serif;
 display: flex;
-background-color: #9BD082;
+background-color: #fff4db;
 justify-content: end;
 align-items: flex-end;
 padding-bottom:10px;

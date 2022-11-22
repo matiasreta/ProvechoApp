@@ -5,8 +5,8 @@ background-color: aliceblue;
 margin-left:320px;
 padding-left: 30px;
 h4{
-    margin-top: 1rem; 
-    margin-bottom: 1rem; 
+    margin-top: 2rem; 
+    margin-bottom: 0.4rem; 
 }
 small{
     display: block;
@@ -38,7 +38,7 @@ p{
 button{
     background-color: #eeeeee;
     border: 0px;
-    border-bottom:1px solid grey;
+    border-bottom:1px solid #7dd37d;
     width: 60px;
     height: 26px;
     margin-bottom: 10px;

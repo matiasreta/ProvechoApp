@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const LandingStyle = styled.div`
 height: 1080px;
-background-color: #fff8e7;
+background-color: #fffaed;
 box-sizing: border-box;
 
 display: grid;
