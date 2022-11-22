@@ -4,6 +4,7 @@ export const RecipeStyle= styled.div`
 display: grid;
 text-align: center;
 max-width: 280px;
+height: 420px;
 background-color: #fff8e7;
 margin-bottom: 0px;
 

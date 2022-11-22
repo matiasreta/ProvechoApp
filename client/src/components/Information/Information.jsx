@@ -17,19 +17,26 @@ export const Information = (props) => {
 
   return (
     <InformationStyle>
-      <h2>Dish information</h2>
+      <div>
+      <h1>{recipe.name}</h1>
+      </div>
+      <div> 
         <img src={recipe.image} alt="Dish-Information" />
-        <p>{recipe.name}</p>
-        <p>DishTypes</p>
+      </div>
+      <div>
+        <h4>DishTypes</h4>
         <p>Score{recipe.score}</p>
         <h4>instructions</h4>
+        {recipe.instructions && parse(recipe.instructions)}
+       </div>
 
-        { recipe.instructions && parse(recipe.instructions)}
+      
 
-        <div>
+        <div className='comments'>
         <h4>Comments</h4>
         <small>{recipe.summary && parse(recipe.summary)}</small>
         </div>
+
     </InformationStyle>
   )
 }
