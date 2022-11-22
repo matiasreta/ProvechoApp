@@ -17,6 +17,7 @@ export const Home = ()=>{
   const dispatch = useDispatch();
   const [postion,setPostion]=React.useState(1)
   const [order,setOrder]=React.useState([{type:'name',value:"desactivado"},{type:'score',value:"desactivado"}]);
+  const [dietsFilter,setFilter]=React.useState([])
 
 
   React.useEffect(()=>{
@@ -42,10 +43,18 @@ export const Home = ()=>{
           return (fe[element.type]===se[element.type]?0:fe[element.type]>se[element.type]?-1:1)})
       }
     });
+    if(!dietsFilter[0])return ordered;
+
+    // diets es un array de objeto
+    dietsFilter.forEach((dietName) => {
+      ordered = ordered.filter((e)=>(e.diets.includes(dietName)))
+    });
+
     return ordered;
+
   }
 
-const changeOrder=(event,value)=>{
+  const changeOrder=(event,value)=>{
   let newOrder=[]
   order.forEach(element => {
     if(element.type===event.target.name){
@@ -55,15 +64,22 @@ const changeOrder=(event,value)=>{
     }
   });
   setOrder(newOrder)
-}
+  }
 
-const buttonList=(numbers)=>{
+  const buttonList=(numbers)=>{
   const list=[];
   for(let index = numbers; 0 < index ; index--) {
     list.unshift(index)
   }
   return list;
-}
+  }
+
+  const filter=(name)=>{
+    if(!dietsFilter.includes(name))setFilter([...dietsFilter ,name])
+  }
+  const resetFilter=()=>{
+    setFilter([])
+  }
 
   return(
     <div>
@@ -86,16 +102,17 @@ const buttonList=(numbers)=>{
         <button name="score" onClick={(e)=>changeOrder(e,"desactivado")} className="material-symbols-outlined">mobiledata_off</button>
         
           {DietsList.map((e)=>{
-            return(<button className="diets" key={e.id}>
-              {e.name}
-            </button>)})
+            return(<button onClick={()=>filter(e.name)}
+            className="diets" key={e.id}>{e.name}</button>)})
           }
+          <button className="diets" onClick={()=>resetFilter()}>none</button>
+          {console.log(dietsFilter)}
         </div>
       
       </FilterStyle>
 
       <HomeStyle>
-      { currentPage(postion).map((e)=>{return(
+      {currentPage(postion).map((e)=>{return(
         <Recipe 
           name={e.name} image={e.image} 
           score={e.score} id={e.id}
