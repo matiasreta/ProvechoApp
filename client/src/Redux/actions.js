@@ -15,12 +15,17 @@ export const getAllRecipes=()=>{
     }
 }
 export const getRecipesByName=(name)=>{
-    return function(dispatch){
-        fetch(`http://localhost:3001/recipes?name=${name}`)
-        .then(response => response.json())
-        .then(data=> dispatch({type:GET_RECIPES_BY_NAME,payload:data.res}))
-        .catch((e)=>console.log(e))
-    }
+
+        return function(dispatch){
+            fetch(`http://localhost:3001/recipes?name=${name}`)
+            .then(response => response.json())
+            .then(data=> dispatch({type:GET_RECIPES_BY_NAME,payload:data.res}))
+            .catch(console.log("error name"))
+            
+        }
+    
+    
+    
 }
 export const getInformation=(id)=>{
     return function(dispatch){

@@ -24,7 +24,7 @@ export const Home = ()=>{
     dispatch(getDiets())
   },[dispatch,recipesList])
   const limit=9;
-  const numbersOfPages= Math.ceil(recipesList.length/limit)
+  const numbersOfPages= Math.ceil(recipesList?.length/limit)
 
   const currentPage=(number)=>{
     const newRender = orderedList(recipesList).slice((limit*number)-limit,(limit*number))
@@ -45,7 +45,6 @@ export const Home = ()=>{
     });
     if(!dietsFilter[0])return ordered;
 
-    // diets es un array de objeto
     dietsFilter.forEach((dietName) => {
       ordered = ordered.filter((e)=>(e.diets.includes(dietName)))
     });
@@ -83,6 +82,7 @@ export const Home = ()=>{
 
   return(
     <div>
+    {recipesList? (<div>
     <PaginateStyle>
     {buttonList(numbersOfPages).map(e=>{return( <button key={e} onClick={()=>setPostion(e)} >{e}</button> )})}
     </PaginateStyle>
@@ -91,6 +91,8 @@ export const Home = ()=>{
       
         <h4>Most viewed recipes</h4>
         <small>{recipesList.length} results, {numbersOfPages} pages </small>
+        
+        
         <div>
         <p>Alphabetical Order</p>
         <button name="name" onClick={(e)=>changeOrder(e,"mayor")} className="material-symbols-outlined">arrow_upward</button>
@@ -106,7 +108,6 @@ export const Home = ()=>{
             className="diets" key={e.id}>{e.name}</button>)})
           }
           <button className="diets" onClick={()=>resetFilter()}>none</button>
-          {console.log(dietsFilter)}
         </div>
       
       </FilterStyle>
@@ -121,6 +122,7 @@ export const Home = ()=>{
       }
       </HomeStyle>
     </TemplateStyle>
+    </div>):(null)}
     </div>
   )
 };
