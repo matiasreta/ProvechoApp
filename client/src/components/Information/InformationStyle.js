@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const InformationStyle = styled.div`
+
 margin: auto;
 width: 1100px;
 padding-left:80px;
@@ -18,7 +19,7 @@ grid-template-columns: 1fr 1fr;
 
 img{
     margin-left:100px;
-    width: 320px;
+    max-width: 360px;
     height: 600px;
     object-fit: cover;
     
@@ -31,6 +32,7 @@ h4{
 }
 
 h1{
+    padding-top:20px;
     font-family: 'Lora', serif;
     font-weight: 100;
     font-size: 60px;
@@ -42,6 +44,7 @@ li{
     
 }
 p{  
+    margin-bottom:30px;
     color: white;
     font-weight: 300;
     font-size: 13px;
@@ -51,7 +54,7 @@ p{
     background-color: #ADC178;
     display: inline-block;
     
-    padding:8px;
+    padding:6px;
     border-radius: 80px;
 }
 .comments{

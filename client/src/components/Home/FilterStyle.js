@@ -2,18 +2,24 @@ import styled from "styled-components";
 
 export const FilterStyle = styled.div`
 background-color: #ece0d9;
+min-height: 1080px;
 //background: linear-gradient(180deg, rgba(255,255,255,1) 3%, #e6d7ce 15%);
 //background: linear-gradient(180deg, rgba(255,255,255,1) 0%, #e6d7ce 100%, #e6d7ce);
 //background-color: #fafafa;
 border: 1px solid gray;
 margin-left:320px;
 padding-left: 30px;
-h4{
+div{
+    position: fixed;
+}
+h4{ 
+    text-align: center;
     color:#ADC178;
     margin-top: 2rem; 
     margin-bottom: 0.4rem; 
 }
 small{
+    text-align: center;
     display: block;
     margin-bottom: 3rem; 
 }

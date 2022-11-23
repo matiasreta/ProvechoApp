@@ -79,9 +79,9 @@ export const Home = ()=>{
   const resetFilter=()=>{
     setFilter([])
   }
-
   return(
     <div>
+      
     {recipesList? (<div>
     <PaginateStyle>
     {buttonList(numbersOfPages).map(e=>{return( <button key={e} onClick={()=>setPostion(e)} >{e}</button> )})}
@@ -89,11 +89,10 @@ export const Home = ()=>{
     <TemplateStyle>
       <FilterStyle>
       
-        <h4>Most viewed recipes</h4>
-        <small>{recipesList.length} results, {numbersOfPages} pages </small>
-        
         
         <div>
+        <h4>Most viewed recipes</h4>
+        <small>{recipesList.length} results, {numbersOfPages} pages </small>
         <p>Alphabetical Order</p>
         <button name="name" onClick={(e)=>changeOrder(e,"mayor")} className="material-symbols-outlined">arrow_upward</button>
         <button name="name" onClick={(e)=>changeOrder(e,"menor")} className="material-symbols-outlined">arrow_downward</button>
@@ -125,7 +124,9 @@ export const Home = ()=>{
     </div>):(null)}
     </div>
   )
+
 };
+
 
 /*
 {

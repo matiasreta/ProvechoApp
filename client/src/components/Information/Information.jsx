@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import {useSelector,useDispatch} from 'react-redux'
 import { getInformation } from '../../Redux/actions'
 import parse from 'html-react-parser';
+import {Diets} from '../Diets/Diets'
 
 export const Information = (props) => {
 
@@ -22,7 +23,8 @@ export const Information = (props) => {
       <h4>DishTypes</h4>
         { recipe.dishTypes?.map((e)=>{return(<p key={e} >{e}</p>)})}
         <p>Score{recipe.score}</p>
-        
+        <h4>Diets</h4>
+        {recipe.diets?.map((e)=>{return(<Diets key={e} name={e} />)})}
       </div>
       <div > 
         <img src={recipe.image} alt="Dish-Information" />

@@ -5,6 +5,7 @@ display: inline-flex;
 height: 30px;
 width: 250px;
 background-color: #6C584C;
+margin-bottom: 10px;
 
 
 
@@ -15,7 +16,6 @@ input{
 ::-webkit-search-results-button,
 ::-webkit-search-results-decoration { display: none; }
 color: white;
-//background-color: #fff4db;
 background-color: #6C584C;
 width: 200px;
 border: none;

@@ -8,14 +8,14 @@ export const Nav = () => {
 
   return (
     <NavStyle>
-      <div> 
+      <div className='title'>
+      <p>PROVECHO</p>
+      </div>
+      <div className='nav'> 
       <NavLinkStyle to={'/Home'}> HOME </NavLinkStyle>
       <NavLinkStyle to={'/CreateRecipe'}> CREATE RECIPE </NavLinkStyle>
-      </div>
-      <div>
       <SearchBar/>
       </div>
-
       
     </NavStyle>
   )
