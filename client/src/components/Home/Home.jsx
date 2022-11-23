@@ -92,7 +92,7 @@ export const Home = ()=>{
         
         <div>
         <h4>Most viewed recipes</h4>
-        <small>{recipesList.length} results, {numbersOfPages} pages </small>
+        <small>{recipesList.length} results, {postion} / {numbersOfPages} pages </small>
         <p>Alphabetical Order</p>
         <button name="name" onClick={(e)=>changeOrder(e,"mayor")} className="material-symbols-outlined">arrow_upward</button>
         <button name="name" onClick={(e)=>changeOrder(e,"menor")} className="material-symbols-outlined">arrow_downward</button>
