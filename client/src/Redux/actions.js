@@ -4,7 +4,13 @@ export const GET_INFORMATION = 'GET_INFORMATION'
 export const SET_RECIPE = 'SET_RECIPE'
 export const GET_DIETS = 'GET_DIETS'
 export const GET_RECIPES_BY_NAME = 'GET_RECIPES_BY_NAME'
+export const CLEAN = 'CLEAN'
 
+export const cleanInformation=()=>{
+    return function(dispatch){
+        dispatch({type:CLEAN})
+    }
+}
 
 export const getAllRecipes=()=>{
     return function(dispatch){

@@ -2,7 +2,7 @@ import React from 'react'
 import {InformationStyle} from './InformationStyle'
 import { useParams } from "react-router-dom";
 import {useSelector,useDispatch} from 'react-redux'
-import { getInformation } from '../../Redux/actions'
+import { getInformation,cleanInformation } from '../../Redux/actions'
 import parse from 'html-react-parser';
 import {Diets} from '../Diets/Diets'
 
@@ -14,6 +14,7 @@ export const Information = (props) => {
 
   React.useEffect(()=>{
     dispatch(getInformation(id))
+    return dispatch(cleanInformation());
   },[id,dispatch])
 
   return (
