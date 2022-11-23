@@ -17,22 +17,23 @@ export const Information = (props) => {
 
   return (
     <InformationStyle>
-      <div>
+      <div className='name'>
       <h1>{recipe.name}</h1>
+      <h4>DishTypes</h4>
+        { recipe.dishTypes?.map((e)=>{return(<p key={e} >{e}</p>)})}
+        <p>Score{recipe.score}</p>
+        
       </div>
-      <div> 
+      <div > 
         <img src={recipe.image} alt="Dish-Information" />
       </div>
-      <div>
-        <h4>DishTypes</h4>
-        <p>Score{recipe.score}</p>
-        <h4>instructions</h4>
-        {recipe.instructions && parse(recipe.instructions)}
-       </div>
-
-      
+        <div className='instructions'>
+          {recipe.instructions?(<h4>instructions</h4>):null}
+          {recipe.instructions && parse(recipe.instructions)}
+        </div>
 
         <div className='comments'>
+        
         <h4>Comments</h4>
         <small>{recipe.summary && parse(recipe.summary)}</small>
         </div>
