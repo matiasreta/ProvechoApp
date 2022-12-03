@@ -17,11 +17,8 @@ export const Recipe = (props) => {
         {props.diets.map(e=>{
           return(<Diets name={e} key={e}/>)
         })}
-
-        
         </CardInfo>
         <LinkInformation to={`/information/${props.id}`}>information</LinkInformation>
-        
     </RecipeStyle>
   )
 }

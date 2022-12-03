@@ -7,14 +7,16 @@ import {PaginateStyle} from './PaginateStyle'
 import { FilterStyle } from "./FilterStyle";
 import { TemplateStyle } from "./TemplateStyle";
 ////////////////////////////////////////////////////////////////
-//limit=9    (1) 0,9     =>    (2) 9,18     =>      (3) 18,27
+//limit=9    (1) 0,9     =>    (2) 9,18     =>      (3) 18,27 //
 ////////////////////////////////////////////////////////////////
 
 export const Home = ()=>{
 
   const recipesList = useSelector(state=>state.recipes);
   const DietsList = useSelector(state=>state.diets);
+
   const dispatch = useDispatch();
+  
   const [postion,setPostion]=React.useState(1)
   const [order,setOrder]=React.useState([{type:'name',value:"desactivado"},{type:'score',value:"desactivado"}]);
   const [dietsFilter,setFilter]=React.useState([])
@@ -33,7 +35,7 @@ export const Home = ()=>{
 
   const orderedList=(arr)=>{
   let ordered=arr;
-  // 4 posibilidades de ordenado, y pueden ser mas...
+
     order.forEach((element) => {
       if(element.value==='mayor'){
         ordered = ordered.sort((fe,se)=>{
@@ -126,19 +128,3 @@ export const Home = ()=>{
   )
 
 };
-
-
-/*
-{
-    "id": 716426,
-    "name": "Cauliflower,pBrown Rice, and Vegetable Fried Rice",
-    "image": "https://spoonacular.com/recipeImages/716426-312x231.jpg",
-    "diets": [
-        "gluten free",
-        "dairy free",
-        "lacto ovo vegetarian",
-        "vegan"
-    ],
-    "score":100
-}
-*/

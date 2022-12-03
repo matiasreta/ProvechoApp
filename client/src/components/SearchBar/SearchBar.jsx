@@ -6,8 +6,9 @@ import {useDispatch} from 'react-redux'
 export const SearchBar =()=>{
 
 const dispatch = useDispatch();
+
 React.useEffect(()=>{
-dispatch(getAllRecipes())
+  dispatch(getAllRecipes())
 },[dispatch])
 
 const [text,setText]=React.useState("");
